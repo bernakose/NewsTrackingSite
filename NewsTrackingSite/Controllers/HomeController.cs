@@ -60,7 +60,6 @@ namespace NewsTrackingSite.Controllers
                 smtp.EnableSsl = true;
                 smtp.Send(email);
                 ViewBag.Success = true;
-
             }
             return View();
         }
