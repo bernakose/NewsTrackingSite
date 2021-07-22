@@ -1,0 +1,126 @@
+﻿@using NewsTrackingSite.Models.ViewModels;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" lang="@HttpContext.Current.Session["Culture"].ToString()" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - News Tracking Site</title>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/libcss")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <i class="fa fa-video-camera"></i> @NewsTrackingSite.Resource.lang.Haber <span class="font-light"> @NewsTrackingSite.Resource.lang.Sitesi</span>
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        @Html.ActionLink(NewsTrackingSite.Resource.lang.AnaSayfa, "Index", "Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink(NewsTrackingSite.Resource.lang.HaftanınHaberleri, "NewsThisWeek", "News")
+                    </li>
+                    <li>
+                        @*@Html.ActionLink(NewsTrackingSite.Resource.lang.ÇıkacakHaberler, "NewsComingSoon", "News")*@
+                    </li>
+                    <li>
+                        @*@Html.ActionLink("IMDB 250", "IMDB250", "Home")*@
+                        <a href="http://www.imdb.com/chart/top" target="_blank">IMDB 250</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink(NewsTrackingSite.Resource.lang.İletişim, "Contact", "Home")
+                    </li>
+                    <li>
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                    <li>
+                        @if (HttpContext.Current.Session["Culture"].ToString() == "tr")
+                        {
+                            <a href="@Url.Action("ChangeCulture", "Home", new { lang = Country.en.ToString(), returnUrl = this.Request.RawUrl })">
+                                <img src="~/Content/img/flags/flagEN.png" title="English" />
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ChangeCulture", "Home", new { lang = Country.tr.ToString(), returnUrl = this.Request.RawUrl })">
+                                <img src="~/Content/img/flags/flagTR.png" title="Türkçe" />
+                            </a>
+                        }
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    @* İç içe masterpage yapmaya bak. nedenine gelince çıkacak haber
+        gösteriminde başka header bulunmaktadır. ana sayfada slider olacak
+        diğerleri ise geniş boşluk bulunacaktır.*@
+    <section id="page-name">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 wp1 delay-05s">
+                    <h1>@NewsTrackingSite.Resource.lang.HaberSitesi</h1>
+                </div><!-- /.col-lg-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /#page-name -->
+
+
+    @RenderBody()
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="overlay"></div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12 wp11">
+
+                    <ul class="social-buttons">
+                        <li><a href="https://twitter.com/"><i class="fa fa-twitter fa-fw"></i> <span>Twitter</span></a></li>
+                        <li><a href="https://www.facebook.com/"><i class="fa fa-facebook fa-fw"></i> <span>Facebook</span></a></li>
+                        <li><a href="https://plus.google.com/"><i class="fa fa-google-plus fa-fw"></i> <span>Google+</span></a></li>
+                        <li><a href="https://www.flickr.com/"><i class="fa fa-flickr fa-fw"></i> <span>Flickr</span></a></li>
+                        <li><a href="https://youtube.com/"><i class="fa fa-youtube fa-fw"></i> <span>You Tube</span></a></li>
+                    </ul>
+
+                </div><!-- /.col-lg-12 -->
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="copyright">
+                    @DateTime.Now.Year © Created With <i class="fa fa-heart"></i> by <strong><a href="">Berna KÖSE</a></strong>
+                </div>
+                <div class="footer-line"></div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /#contact -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/libjs")
+
+    @RenderSection("additionalJs", required: false)
+</body>
+</html>

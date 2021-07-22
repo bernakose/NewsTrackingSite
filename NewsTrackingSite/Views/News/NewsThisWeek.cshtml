@@ -1,0 +1,85 @@
+﻿@using NewsTrackingSite.Models.ViewModels;
+@using PagedList.Mvc;
+
+@model  PagedList.PagedList<NewsTrackingSite.Models.News>
+
+@{
+    ViewBag.Title = "NewsThisWeek";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    NMainPageDTO contentData = ViewBag.MainPageDTO;
+}
+
+<!-- Blog Section -->
+<section id="blog">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 wp2 delay-05s">
+                <div class="sidebar-widget content_top">
+                    <h4 style="font-size: 38px; font-weight: 500">@NewsTrackingSite.Resource.lang.HaftanınHaberleri</h4>
+                </div>
+            </div>
+            <div class="col-lg-5 wp2 delay-05s">
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            @ViewBag.CurrentDDLText
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink(NewsTrackingSite.Resource.lang.Puan, "NewsThisWeek", new { sorting = ViewBag.RaitingSortParam })</li>
+                            <li>@Html.ActionLink(NewsTrackingSite.Resource.lang.YayınlanmaTarihi, "NewsThisWeek", new { sorting = ViewBag.ReleaseDateSortParam })</li>
+                        </ul>
+                    </div>
+                    <a href="@Url.Action("NewsThisWeek", new { sorting = ViewBag.CurrentSortParam })" class="btn btn-default" role="button" title="@(ViewBag.ResortBtnAlt as string)"><i class="@(ViewBag.CurrentArrow as string)"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9 wp2 delay-05s">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-item blog-item-full">
+                        <div class="blog-item-img">
+                            @if (item.Poster != null)
+                            {
+                                <a class="popup" href="data:image/jpg;base64, @Convert.ToBase64String(item.Poster)">
+                                    <img src="data:image/jpg;base64, @Convert.ToBase64String(item.Poster)" alt="" />
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="popup" href="~/Content/img/noimage.png">
+                                    <img src="~/Content/img/noimage.png" alt="" />
+                                </a>
+                            }
+                        </div>
+                        <div class="blog-item-info">
+                            <span>@item.ReleaseDate.Year</span>
+                            <small>@item.ReleaseDate.Day - @item.ReleaseDate.ToString("MMM")</small>
+                            @*<a href="#"><i class="fa fa-star-o"></i><small>@item.Raiting</small></a>*@
+                        </div><!-- /.blog-item-info -->
+
+                        <div class="blog-item-text">
+                            <h3><a href="@Url.Action("NewsDetails", "News", new { newsID = item.NewsID })">@item.Title</a></h3>
+                            <p class="shorten">@item.Description</p>
+                        </div><!-- /.blog-item-text -->
+                    </div><!-- blog-item -->
+                    <hr>
+                }
+
+                <!-- Pagination -->
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+            </div><!-- /.col-lg-8 -->
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                @Html.Partial("_SearchPartial")
+                @Html.Partial("_SidebarPartial", contentData)
+            </div> <!-- /sidebar-->
+
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</section><!-- /#blog -->

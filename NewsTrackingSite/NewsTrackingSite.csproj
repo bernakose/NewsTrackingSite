@@ -1,0 +1,577 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C316742-0658-488A-A7C5-4E2AC7EF970B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewsTrackingSite</RootNamespace>
+    <AssemblyName>NewsTrackingSite</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44364</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Cookies, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Cookies.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Core.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.DataProtection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.DataProtection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.2.0\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.WebEncoders, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.WebEncoders.2.2.0\lib\netstandard2.0\Microsoft.Extensions.WebEncoders.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.2.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.4.5.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.4.5.0\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\MovieArchiveDB.mdf" />
+    <Content Include="App_Data\MovieArchiveDB_log.ldf">
+      <DependentUpon>MovieArchiveDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\assets\css\bootstrap.css" />
+    <Content Include="Areas\Admin\assets\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\assets\css\plugins\chosen-sprite%402x.png" />
+    <Content Include="Areas\Admin\assets\css\plugins\chosen-sprite.png" />
+    <Content Include="Areas\Admin\assets\css\plugins\chosen.css" />
+    <Content Include="Areas\Admin\assets\css\plugins\chosen.min.css" />
+    <Content Include="Areas\Admin\assets\css\plugins\datepicker.css" />
+    <Content Include="Areas\Admin\assets\css\plugins\morris.css" />
+    <Content Include="Areas\Admin\assets\css\sb-admin.css" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\css\font-awesome.css" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\css\font-awesome.min.css" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\assets\js\bootstrap.js" />
+    <Content Include="Areas\Admin\assets\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery-1.11.0.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\chosen\chosen.jquery.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\chosen\chosen.jquery.min.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\chosen\chosen.proto.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\chosen\chosen.proto.min.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\flot\excanvas.min.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\flot\flot-data.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\flot\jquery.flot.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\bootstrap-datepicker.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.uk.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\form-datepicker\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\morris\morris-data.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\morris\morris.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\morris\morris.min.js" />
+    <Content Include="Areas\Admin\assets\js\plugins\morris\raphael.min.js" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\404-page-bg.jpg" />
+    <Content Include="Content\img\actors\01.png" />
+    <Content Include="Content\img\actors\02.png" />
+    <Content Include="Content\img\actors\03.png" />
+    <Content Include="Content\img\actors\04.png" />
+    <Content Include="Content\img\arrows.png" />
+    <Content Include="Content\img\blog\01.jpg" />
+    <Content Include="Content\img\blog\02.jpg" />
+    <Content Include="Content\img\blog\03.jpg" />
+    <Content Include="Content\img\contact-bg.jpg" />
+    <Content Include="Content\img\damper-pat.png" />
+    <Content Include="Content\img\field-corner.png" />
+    <Content Include="Content\img\flags\flagEN.png" />
+    <Content Include="Content\img\flags\flagTR.png" />
+    <Content Include="Content\img\gallery-bg.jpg" />
+    <Content Include="Content\img\gallery\01.jpg" />
+    <Content Include="Content\img\gallery\02.jpg" />
+    <Content Include="Content\img\gallery\03.jpg" />
+    <Content Include="Content\img\gallery\04.jpg" />
+    <Content Include="Content\img\gallery\05.jpg" />
+    <Content Include="Content\img\gallery\06.jpg" />
+    <Content Include="Content\img\gallery\07.jpg" />
+    <Content Include="Content\img\gallery\08.jpg" />
+    <Content Include="Content\img\gallery\slider\1.jpg" />
+    <Content Include="Content\img\gallery\slider\2.jpg" />
+    <Content Include="Content\img\gallery\slider\3.jpg" />
+    <Content Include="Content\img\gallery\slider\4.jpg" />
+    <Content Include="Content\img\gallery\slider\5.jpg" />
+    <Content Include="Content\img\movie-avatar-bg.png" />
+    <Content Include="Content\img\movie-avatar-img-glare.png" />
+    <Content Include="Content\img\movie-avatar-img.png" />
+    <Content Include="Content\img\movie-player-bg.jpg" />
+    <Content Include="Content\img\movie-player-element.png" />
+    <Content Include="Content\img\noimage.png" />
+    <Content Include="Content\img\overlay-pat.png" />
+    <Content Include="Content\img\prev.png" />
+    <Content Include="Content\img\strip-bg.gif" />
+    <Content Include="Content\img\video-img.jpg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\slider.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\bordered-pulled.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\core.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\fixed-width.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\font-awesome.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\icons.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\larger.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\list.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\mixins.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\path.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\rotated-flipped.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\spinning.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\stacked.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\less\variables.less" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\font-awesome.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_bordered-pulled.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_core.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_fixed-width.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_icons.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_larger.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_list.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_mixins.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_path.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_rotated-flipped.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_spinning.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_stacked.scss" />
+    <Content Include="Areas\Admin\assets\font-awesome-4.1.0\scss\_variables.scss" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\Actors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Actors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Actors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Actors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Directors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Directors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Directors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Directors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Haber\HaberDetay.cshtml" />
+    <Content Include="Areas\Admin\Views\Haber\HaberEkle.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Content\M11 -115q-10 23 7 66.5t18 54.5q1 16 -4 40t-10 42.5t-4.5 36.5t10.5 27q14 12 57 14t60 12q30 18 42 35t101E11B4A3A" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenresController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\SelectedListHelper.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\HelperModels\NResult.cs" />
+    <Compile Include="Models\HelperModels\NSession.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewModels\Enums.cs" />
+    <Compile Include="Models\ViewModels\NContactModel.cs" />
+    <Compile Include="Models\ViewModels\NLoginModel.cs" />
+    <Compile Include="Models\ViewModels\NMainPageDTO.cs" />
+    <Compile Include="Models\ViewModels\NNewsDetails.cs" />
+    <Compile Include="Models\ViewModels\NSelectListItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\KategoriTipRepository.cs" />
+    <Compile Include="Repositories\MD5Generate.cs" />
+    <Compile Include="Repositories\MembershipRepository.cs" />
+    <Compile Include="Repositories\NewsRepository.cs" />
+    <Compile Include="Repositories\NewsTrackingDB.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Resource\lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Membership\Login.cshtml" />
+    <Content Include="Views\Membership\Register.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\News\NewsThisWeek.cshtml" />
+    <Content Include="Views\News\NewsDetails.cshtml" />
+    <Content Include="Views\News\NewsList.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\lang.en.resx" />
+    <EmbeddedResource Include="Resource\lang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54385</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44364/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

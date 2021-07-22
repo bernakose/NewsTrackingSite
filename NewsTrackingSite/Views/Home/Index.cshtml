@@ -1,0 +1,94 @@
+﻿@using NewsTrackingSite.Models.ViewModels;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<NewsTrackingSite.Models.News>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    NMainPageDTO contentData = ViewBag.MainPageDTO;
+}
+
+@section additionalJs{
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                animSpeed: 400
+            });
+        });
+    </script>
+}
+
+<!-- Blog Section -->
+<section id="blog">
+    <div class="container">
+        <div class="col-lg-8 wp2 delay-05s">
+            <div class="row">
+                <!------ Slider ------------>
+                <div class="slider">
+                    <div class="slider-wrapper theme-default">
+                        <div id="slider" class="nivoSlider">
+                            @foreach (var item in contentData.Posters)
+                            {
+                                <img src="data:image/jpg;base64, @Convert.ToBase64String(item)" alt="" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!------End Slider ------------>
+            </div>
+            <br />
+            <br />
+            <br />
+            <hr />
+
+            <div class="row">
+                <div class="col-lg-8 wp2 delay-05s">
+                    <div class="sidebar-widget content_top">
+                        <h4>@NewsTrackingSite.Resource.lang.TümHaberler</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-item blog-item-full">
+                        <div class="blog-item-img">
+                            @if (item.Poster != null)
+                            {
+                                <img src="data:image/jpg;base64, @Convert.ToBase64String(item.Poster)" alt="" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/img/noimage.png" alt="" />
+                            }
+                        </div>
+                        <div class="blog-item-info">
+                            <span>@item.ReleaseDate.Year</span>
+                            <small>@item.ReleaseDate.Day - @item.ReleaseDate.ToString("MMM")</small>
+                            @*<a href="#"><i class="fa fa-star-o"></i><small>@item.</small></a>*@
+                        </div><!-- /.blog-item-info -->
+
+                        <div class="blog-item-text">
+                            <h3><a href="@Url.Action("NewsDetails", "News", new { newsID = item.NewsID })">@item.Title</a></h3>
+                            <p class="shorten">@item.Description</p>
+                        </div><!-- /.blog-item-text -->
+                    </div><!-- blog-item -->
+                    <hr>
+                }
+
+                <!-- Pagination -->
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3 wp2 delay-05s">
+            @Html.Partial("_SearchPartial")
+            @Html.Partial("_CategoriesPartial", contentData)
+            @Html.Partial("_SidebarPartial", contentData)
+        </div>
+
+    </div><!-- /.container -->
+</section><!-- /#blog -->

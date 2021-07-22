@@ -1,0 +1,117 @@
+﻿@model NewsTrackingSite.Models.ViewModels.NContactModel
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section additionalJs {
+    @if (ViewBag.Success != null && ViewBag.Success)
+    {
+        <div id="wrapper">
+            <div id="message-sent">
+                <div id="close-button">
+                    <span>X</span>
+                </div>
+                <span>Mesajınız başarıyla gönderilmiştir.</span>
+            </div>
+        </div>
+    }
+
+    <script>
+        $('#wrapper').click(function () {
+            $(this).fadeOut('slow');
+        });
+    </script>
+}
+
+
+<!-- Blog Section -->
+<section id="blog">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 wp2 delay-05s">
+                <div class="sidebar-widget content_top">
+                    <h4 style="font-size: 38px; font-weight: 500">İlETŞİM</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Google Maps -->
+            <div class="col-lg-7 wp2 delay-05s">
+                <h2>@NewsTrackingSite.Resource.lang.Neredeyiz</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.41468531474!2d35.87943611532031!3d41.56026887924859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40889844b805711d%3A0x153c34b0fcdeb02c!2sBah%C3%A7eler%2C%20Adamevki%20Sk.%20No%3A71%2C%2055400%20Bafra%2FSamsun!5e0!3m2!1str!2str!4v1624540444302!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div><!-- /.col-lg-7 -->
+            <!-- Contant -->
+            <div class="col-lg-5 wp2 delay-05s">
+                <h2>@NewsTrackingSite.Resource.lang.İletişim</h2>
+                @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-section", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+
+                        <div class="row" style="margin: 3%">
+                            <div class="col-md-12">
+                                @Html.ValidationSummary()
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.Label(NewsTrackingSite.Resource.lang.Ad):
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.Label(@NewsTrackingSite.Resource.lang.EMail):
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.EMail, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.Label(@NewsTrackingSite.Resource.lang.Telefon):
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.Label(@NewsTrackingSite.Resource.lang.Mesaj):
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" value="@NewsTrackingSite.Resource.lang.Gönder" class="btn" style="float: right; margin-right: 13%" />
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                }
+            </div><!-- /.col-lg-6 -->
+
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</section><!-- /#blog --> 

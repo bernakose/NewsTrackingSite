@@ -1,0 +1,150 @@
+﻿@model NewsTrackingSite.Models.ViewModels.NNewsDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>News</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.News.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.Poster)
+        </dt>
+
+        <dd>
+            @if (Model.News.Poster != null)
+            {
+                <a class="popup" href="data:image/jpg;base64, @Convert.ToBase64String(Model.News.Poster)">
+                    <img src="data:image/jpg;base64, @Convert.ToBase64String(Model.News.Poster)" alt="" width="100" height="100" />
+                </a>
+            }
+            else
+            {
+                <a class="popup" href="~/Content/img/noimage.png">
+                    <img src="~/Content/img/noimage.png" alt="" width="100" height="100" />
+                </a>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.ReleaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.ReleaseCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.ReleaseCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.TrailerLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.TrailerLink)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.News.Raiting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.Raiting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.Budget)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+
+        <dd>
+            @{
+                var genreList = Model.Genres;
+
+                for (int i = 0; i < genreList.Count; i++)
+                {
+                    @Html.Label(genreList[i].GenreName, new { style = "font-weight: normal" });
+                    if (i != genreList.Count - 1)
+                    {
+                        @Html.Label(",", new { style = "font-weight: normal" });
+                    }
+                }
+            }
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Directors)
+        </dt>*@
+
+        @*<dd>
+            @{
+                var directorList = Model.Directors;
+
+                for (int i = 0; i < directorList.Count; i++)
+                {
+                    @Html.Label(directorList[i].DirectorName, new { style = "font-weight: normal" });
+                    if (i != directorList.Count - 1)
+                    {
+                        @Html.Label(",", new { style = "font-weight: normal" });
+                    }
+                }
+            }
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Actors)
+        </dt>*@
+
+        @*<dd>
+            @{
+                var actorList = Model.Actors;
+
+                for (int i = 0; i < actorList.Count; i++)
+                {
+                    @Html.Label(actorList[i].ActorName, new { style = "font-weight: normal" });
+                    if (i != actorList.Count - 1)
+                    {
+                        @Html.Label(",", new { style = "font-weight: normal" });
+                    }
+                }
+            }
+        </dd>*@
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.News.NewsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

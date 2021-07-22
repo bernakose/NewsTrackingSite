@@ -1,0 +1,96 @@
+﻿@using NewsTrackingSite.Models.ViewModels;
+
+@model NewsTrackingSite.Models.News
+
+@{
+    ViewBag.Title = "NewsDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    NMainPageDTO contentData = ViewBag.MainPageDTO;
+}
+
+<!-- Blog Section -->
+<section id="blog">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 wp2 delay-05s">
+                <div class="sidebar-widget content_top">
+                    <h4 style="font-size: 38px; font-weight: 500">@NewsTrackingSite.Resource.lang.HaberDetay</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9 wp2 delay-05s">
+
+                <div class="row" id="review-area">
+                    <div class="col-lg-6 wp2 delay-05s">
+                        @if (Model.Poster != null)
+                        {
+                            <a class="popup" href="data:image/jpg;base64, @Convert.ToBase64String(Model.Poster)">
+                                <img src="data:image/jpg;base64, @Convert.ToBase64String(Model.Poster)" alt="" width="400" height="500" />
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="popup" href="~/Content/img/noimage.png">
+                                <img src="~/Content/img/noimage.png" alt="" width="400" height="500" />
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6 wp2 delay-05s">
+                        <h2>@Html.DisplayFor(model => model.Title)</h2>
+                        <br />
+                        <br />
+                        <br />
+                        @*@Html.Label(@NewsTrackingSite.Resource.lang.Puan):&nbsp;&nbsp;
+                        @Html.DisplayFor(model => model.Raiting)
+                        <br />
+                        <br />*@
+                        @*@Html.Label(@NewsTrackingSite.Resource.lang.Bütçe):&nbsp;&nbsp;
+                        @Html.DisplayFor(model => model.Budget)
+                        <br />
+                        <br />*@
+                        @Html.Label(@NewsTrackingSite.Resource.lang.YayınlanmaTarihi):&nbsp;&nbsp;
+                        @Html.DisplayFor(model => model.ReleaseDate)
+                        <br />
+                        <br />
+                        @Html.Label(@NewsTrackingSite.Resource.lang.Ülke):&nbsp;&nbsp;
+                        @Html.DisplayFor(model => model.ReleaseCountry)
+                        <br />
+                        <br />
+                        <!-- Bu aralara tür kategori eklenmeli-->
+                    </div>
+                </div>
+                <div class="row" id="description-area">
+                    <hr />
+                    <br />
+                    @Html.Label(@NewsTrackingSite.Resource.lang.HaberDetay)
+                    <br />
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(model => model.Description)</p>
+                    <hr />
+                    <br />
+                </div>
+                <div class="row" id="fragman">
+                    <iframe width="854" height="510" src="@Model.TrailerLink" title="YouTube video player"
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="row" id="comment-area">
+
+                </div>
+                <div class="row" id="reply-area">
+
+                </div>
+
+            </div><!-- /.col-lg-8 -->
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                @Html.Partial("_SearchPartial")
+                @Html.Partial("_SidebarPartial", contentData)
+            </div> <!-- /sidebar-->
+
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</section><!-- /#blog -->

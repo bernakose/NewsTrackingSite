@@ -1,0 +1,129 @@
+﻿@using NewsTrackingSite.Repositories;
+@using NewsTrackingSite.Models.ViewModels;
+@{
+    var userRepo = new UserRepository().GetUser(Convert.ToInt32(Session["User"]));
+    if (userRepo.IsSuccessful)
+    {
+        if (userRepo.Data.MemberType == MemberType.User)
+        {
+            Response.Redirect("~/Home");
+        }
+    }
+    else
+    {
+        Response.Redirect("~/Home");
+    }
+}
+
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/assets/css")
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">@NewsTrackingSite.Resource.lang.HaberSitesiAdmin</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" id="@userRepo.Data.UserID"><i class="fa fa-fw fa-user"></i>&nbsp;@userRepo.Data.FName @userRepo.Data.LName</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "../Home")"><i class="fa fa-fw fa-envelope"></i>&nbsp;@NewsTrackingSite.Resource.lang.SiteyeGit</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="@Url.Action("Logout", "Home")"><i class="fa fa-fw fa-power-off"></i> @NewsTrackingSite.Resource.lang.Çıkış</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    @if (HttpContext.Current.Session["Culture"].ToString() == "tr")
+                    {
+                        <a href="@Url.Action("ChangeCulture", "Home", new { lang = Country.en.ToString(), returnUrl = this.Request.RawUrl })">
+                            <img src="~/Content/img/flags/flagEN.png" title="English" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ChangeCulture", "Home", new { lang = Country.tr.ToString(), returnUrl = this.Request.RawUrl })">
+                            <img src="~/Content/img/flags/flagTR.png" title="Türkçe" />
+                        </a>
+                    }
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                            <i class="fa fa-fw fa-edit"></i> @NewsTrackingSite.Resource.lang.İçerikYönetim <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                @Html.ActionLink(NewsTrackingSite.Resource.lang.Haberİşlemleri, "Index", "News")
+                            </li>
+                            <li>
+                                @Html.ActionLink(NewsTrackingSite.Resource.lang.HaberTürleriİşlemleri, "Index", "Genres")
+                            </li>
+                            @*<li>
+                                @Html.ActionLink(NewsTrackingSite.Resource.lang.Aktörİşlemleri, "Index", "Actors")
+                            </li>*@
+                            @*<li>
+                                @Html.ActionLink(NewsTrackingSite.Resource.lang.Yönetmenİşlemleri, "Index", "Directors")
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Users")"><i class="fa fa-fw fa-wrench"></i> @NewsTrackingSite.Resource.lang.Kullanıcıİşlemler</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+
+        <div id="page-wrapper">
+            @RenderBody()
+        </div><!-- /#page-wrapper -->
+    </div><!-- /#wrapper -->
+
+
+    @Scripts.Render("~/assets/js")
+    @Scripts.Render("~/assets/js/plugins")
+    @RenderSection("additionalJs", required: false)
+
+</body>
+</html>
