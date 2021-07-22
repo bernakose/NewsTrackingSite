@@ -1,0 +1,31 @@
+﻿
+<!-- Önerilen Posts -->
+<div class="sidebar-widget">
+    <h4>@*@NewsTrackingSite.Resource.lang.ÖnerilenFilmler*@</h4>
+    <ul class="latest-blog-list">
+        @foreach (var item in ViewBag.MainPageDTO.RandomNews)
+        {
+            <li>
+                <br />
+                <span>@item.ReleaseDate.Day</span>
+                <small>@item.ReleaseDate.ToString("MMM")</small>
+                <small>@item.ReleaseDate.Year</small>
+                <p>
+                    <a href="@Url.Action("NewsDetails", "News", new { newsID = @item.NewsID })">
+                        @if (item.Poster != null)
+                        {
+                            <img src="data:image/jpg;base64, @Convert.ToBase64String(item.Poster)" width="260" height="150">
+                        }
+                        else
+                        {
+                            <img src="~/Content/img/noimage.png" width="260" height="150">
+                        }
+                        <br />
+                        <small style="color: #fb0000">@item.Title</small>
+                    </a>
+                </p>
+            </li>
+        }
+    </ul>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@using NewsTrackingSite.Repositories;
+@using NewsTrackingSite.Models.ViewModels;
+@{
+    var userRepo = new UserRepository().GetUser(Convert.ToInt32(Session["User"])).Data;
+}
+
+@if (Session["User"] != null)
+{
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="fa fa-user"></i>&nbsp;<i class="caret"></i>
+    </a>
+    <ul class="dropdown-menu" style="background-color: #3C3C3C">
+        <li>
+            @if (userRepo.MemberType == MemberType.Admin)
+            {
+                <a href="#" style="color: #fb0000;" id="@userRepo.UserID">
+                    <i class="glyphicon glyphicon-user"></i> @userRepo.FName @userRepo.LName
+                </a>
+            }
+            else
+            {
+                <a href="#" style="color: #ffffff;" id="@userRepo.UserID">
+                    <i class="glyphicon glyphicon-user"></i> @userRepo.FName @userRepo.LName
+                </a>
+            }
+        </li>
+        <li><a style="color: #ffffff" id="logoutLink" href="@Url.Action("Logout", "Membership")"><i class="fa fa-fw fa-power-off"></i> @NewsTrackingSite.Resource.lang.Çıkış</a></li>
+        @if (userRepo.MemberType == MemberType.Admin)
+        {
+            <li class="divider"></li>
+            <li><a style="color: #ffffff" id="manageLink" title="Manage" href="@Url.Action("Index", "Admin/Home")"><i class="fa fa-fw fa-gear"></i> @NewsTrackingSite.Resource.lang.YönetimPaneli</a></li>
+        }
+    </ul>
+}
+else
+{
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="fa fa-user"></i> <i class="caret"></i>
+    </a>
+    <ul class="dropdown-menu" style="background-color: #3C3C3C">
+        <li><a style="color: #ffffff" id="registerLink" href="@Url.Action("Register", "Membership")"><i class="glyphicon glyphicon-user"></i> @NewsTrackingSite.Resource.lang.KayıtOl</a></li>
+        <li><a style="color: #ffffff" id="loginLink" href="@Url.Action("Login", "Membership")"><i class="glyphicon glyphicon-log-in"></i> @NewsTrackingSite.Resource.lang.GİRİŞ</a></li>
+    </ul>
+}

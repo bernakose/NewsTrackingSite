@@ -29,9 +29,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -255,9 +255,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MovieArchiveDB.mdf" />
-    <Content Include="App_Data\MovieArchiveDB_log.ldf">
-      <DependentUpon>MovieArchiveDB.mdf</DependentUpon>
+    <Content Include="App_Data\NewsTrackingDB.mdf" />
+    <Content Include="App_Data\NewsTrackingDB_log.ldf">
+      <DependentUpon>NewsTrackingDB.mdf</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\assets\css\bootstrap.css" />
     <Content Include="Areas\Admin\assets\css\bootstrap.min.css" />
@@ -516,6 +516,11 @@
     <Content Include="Views\News\NewsThisWeek.cshtml" />
     <Content Include="Views\News\NewsDetails.cshtml" />
     <Content Include="Views\News\NewsList.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_SearchPartial.cshtml" />
+    <Content Include="Views\Shared\_SidebarPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

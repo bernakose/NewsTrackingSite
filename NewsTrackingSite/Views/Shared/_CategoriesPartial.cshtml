@@ -1,0 +1,13 @@
+﻿<div class="sidebar-widget">
+    <h4>@*@NewsTrackingSite.Resource.lang.Kategoriler*@</h4>
+    <ul class="sidebar-categories">
+        @foreach (var item in Model.Categories)
+        {
+            <li>
+                <a href="@Url.Action("MovieList", "Movies", new { genreID = item.GenreID })">
+                    @item.GenreName
+                </a>
+            </li>
+        }
+    </ul>
+</div>
