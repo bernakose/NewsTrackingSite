@@ -187,8 +187,8 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
 
             NewsTrackingDB db = new NewsTrackingDB();
             var tempSelectedGenres = (formColl["GenreList"] as string).Split(',').ToList();
-            var tempSelectedDirectors = (formColl["DirectorList"] as string).Split(',').ToList();
-            var tempSelectedActors = (formColl["ActorList"] as string).Split(',').ToList();
+            //var tempSelectedDirectors = (formColl["DirectorList"] as string).Split(',').ToList();
+            //var tempSelectedActors = (formColl["ActorList"] as string).Split(',').ToList();
 
             foreach (var item in tempSelectedGenres)
             {
@@ -199,23 +199,23 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
                 tempNews.Genre.Add(tempGenre);
             }
 
-            foreach (var item in tempSelectedDirectors)
-            {
-                var tempDirectorID = Convert.ToInt32(item);
-                var tempNews = db.News.Where(m => m.NewsID == islemSonuc.Data).FirstOrDefault();
-                //var tempDirector = db.Director.Where(d => d.DirectorID == tempDirectorID).FirstOrDefault();
-                //tempDirector.News.Add(tempNews);
-                //tempNews.Director.Add(tempDirector);
-            }
+            //foreach (var item in tempSelectedDirectors)
+            //{
+            //    var tempDirectorID = Convert.ToInt32(item);
+            //    var tempNews = db.News.Where(m => m.NewsID == islemSonuc.Data).FirstOrDefault();
+            //    //var tempDirector = db.Director.Where(d => d.DirectorID == tempDirectorID).FirstOrDefault();
+            //    //tempDirector.News.Add(tempNews);
+            //    //tempNews.Director.Add(tempDirector);
+            //}
 
-            foreach (var item in tempSelectedActors)
-            {
-                var tempActorID = Convert.ToInt32(item);
-                var tempNews = db.News.Where(m => m.NewsID == islemSonuc.Data).FirstOrDefault();
-                //var tempActor = db.Actor.Where(a => a.ActorID == tempActorID).FirstOrDefault();
-                //tempActor.News.Add(tempNews);
-                //tempNews.Actor.Add(tempActor);
-            }
+            //foreach (var item in tempSelectedActors)
+            //{
+            //    var tempActorID = Convert.ToInt32(item);
+            //    var tempNews = db.News.Where(m => m.NewsID == islemSonuc.Data).FirstOrDefault();
+            //    //var tempActor = db.Actor.Where(a => a.ActorID == tempActorID).FirstOrDefault();
+            //    //tempActor.News.Add(tempNews);
+            //    //tempNews.Actor.Add(tempActor);
+            //}
 
             db.SaveChanges();
 
@@ -291,8 +291,8 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
 
 
             var tempSelectedGenres = (formColl["GenreList"] as string).Split(',').ToList();
-            var tempSelectedDirectors = (formColl["DirectorList"] as string).Split(',').ToList();
-            var tempSelectedActors = (formColl["ActorList"] as string).Split(',').ToList();
+            //var tempSelectedDirectors = (formColl["DirectorList"] as string).Split(',').ToList();
+            //var tempSelectedActors = (formColl["ActorList"] as string).Split(',').ToList();
 
 
             var delNews = db.News.Where(m => m.NewsID == news.NewsID).FirstOrDefault();

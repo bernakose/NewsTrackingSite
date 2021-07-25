@@ -104,7 +104,7 @@ namespace NewsTrackingSite.Controllers
                 sorting = "ReleaseDateDesc";
             }
             ViewBag.ReleaseDateSortParam = sorting == "ReleaseDateAsc" ? "ReleaseDateDesc" : "ReleaseDateAsc";
-            ViewBag.RaitingSortParam = sorting == "RaitingDesc" ? "RaitingAsc" : "RaitingDesc";
+            //ViewBag.RaitingSortParam = sorting == "RaitingDesc" ? "RaitingAsc" : "RaitingDesc";
 
             // Gelen sıralama ifadesine göre sıralama yapılır.
             switch (sorting)

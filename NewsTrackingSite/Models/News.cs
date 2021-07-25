@@ -46,7 +46,8 @@ namespace NewsTrackingSite.Models
         [Display(Name = "Fragman")]
         [DataType(DataType.Url)]
         public string TrailerLink { get; set; }
-                
+
+        
         public virtual ICollection<Genre> Genre { get; set; }
     }
 }

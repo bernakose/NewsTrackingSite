@@ -13,6 +13,8 @@ namespace NewsTrackingSite.Repositories
         public NewsTrackingDB() : base("name=NewsTrackingDB")
         {
         }
+
+        
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<User> User { get; set; }
