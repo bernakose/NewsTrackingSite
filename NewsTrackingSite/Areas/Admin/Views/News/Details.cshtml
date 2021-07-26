@@ -70,22 +70,6 @@
             @Html.DisplayFor(model => model.News.TrailerLink)
         </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.News.Raiting)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.News.Raiting)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.News.Budget)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.News.Budget)
-        </dd>*@
-
         <dt>
             @Html.DisplayNameFor(model => model.Genres)
         </dt>
@@ -103,45 +87,7 @@
                     }
                 }
             }
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Directors)
-        </dt>*@
-
-        @*<dd>
-            @{
-                var directorList = Model.Directors;
-
-                for (int i = 0; i < directorList.Count; i++)
-                {
-                    @Html.Label(directorList[i].DirectorName, new { style = "font-weight: normal" });
-                    if (i != directorList.Count - 1)
-                    {
-                        @Html.Label(",", new { style = "font-weight: normal" });
-                    }
-                }
-            }
-        </dd>*@
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Actors)
-        </dt>*@
-
-        @*<dd>
-            @{
-                var actorList = Model.Actors;
-
-                for (int i = 0; i < actorList.Count; i++)
-                {
-                    @Html.Label(actorList[i].ActorName, new { style = "font-weight: normal" });
-                    if (i != actorList.Count - 1)
-                    {
-                        @Html.Label(",", new { style = "font-weight: normal" });
-                    }
-                }
-            }
-        </dd>*@
+        </dd>       
     </dl>
 </div>
 <p>

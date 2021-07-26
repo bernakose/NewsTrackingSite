@@ -58,20 +58,6 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
                     ViewBag.CurrentArrow = "fa fa-sort-amount-asc";
                     ViewBag.ResortBtnAlt = "Tıkladığınızda azdan çoka sıralar.";
                     break;
-                //case "RaitingAsc":
-                //    contentNews = contentNews.OrderBy(m => m.Raiting).ToList();
-                //    ViewBag.CurrentSortParam = "RaitingDesc";
-                //    ViewBag.CurrentDDLText = "Raiting";
-                //    ViewBag.CurrentArrow = "fa fa-sort-amount-desc";
-                //    ViewBag.ResortBtnAlt = "Tıkladığınızda çoktan aza sıralar.";
-                //    break;
-                //case "RaitingDesc":
-                //    contentNews = contentNews.OrderByDescending(m => m.Raiting).ToList();
-                //    ViewBag.CurrentSortParam = "RaitingAsc";
-                //    ViewBag.CurrentDDLText = "Raiting";
-                //    ViewBag.CurrentArrow = "fa fa-sort-amount-asc";
-                //    ViewBag.ResortBtnAlt = "Tıkladığınızda azdan çoka sıralar.";
-                //    break;
                 default:
                     contentNews = contentNews.OrderByDescending(m => m.ReleaseDate).ToList();
                     ViewBag.CurrentSortParam = "ReleaseDateAsc";
@@ -109,8 +95,6 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
                     ReleaseCountry = news.ReleaseCountry,
                     TrailerLink = news.TrailerLink
                 },
-                //Directors = new DirectorRepository().GetDirector(newsID).Data,
-                //Actors = new ActorRepository().GetActor(newsID).Data,
                 Genres = new KategoriTipRepository().GetGenre(newsID).Data
             };
 
@@ -121,36 +105,18 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
         public ActionResult Create()        //Yeni bir haber eklenmek istendiğinde boş bırakılan yerlerin hata kontrolü yapılır.
         {
             var genreList = new KategoriTipRepository().GetirTumu();
-            //var directorList = new DirectorRepository().GetAllDirector();
-            //var actorList = new ActorRepository().GetAllActor();
 
             #region [HATA KONTROL]
             if (!genreList.IsSuccessful)
             {
                 ModelState.AddModelError("", genreList.Message);
-            }
-            //if (!directorList.IsSuccessful)
-            //{
-            //    ModelState.AddModelError("", directorList.Message);
-            //}
-            //if (!actorList.IsSuccessful)
-            //{
-            //    ModelState.AddModelError("", actorList.Message);
-            //}
-            //if (!(genreList.IsSuccessful && directorList.IsSuccessful && actorList.IsSuccessful))
-            //{
-            //    return Create();
-            //}
+            }            
             #endregion
 
 
             MultiSelectList genreSelectList = new MultiSelectList(genreList.Data, "GenreID", "GenreName");
-            //MultiSelectList directorSelectList = new MultiSelectList(directorList.Data, "DirectorID", "DirectorName");
-            //MultiSelectList actorSelectList = new MultiSelectList(actorList.Data, "ActorID", "ActorName");
 
             ViewData["GenreList"] = genreSelectList;
-            //ViewData["DirectorList"] = directorSelectList;
-            //ViewData["ActorList"] = actorSelectList;
 
             News md = new News();
 
@@ -187,8 +153,6 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
 
             NewsTrackingDB db = new NewsTrackingDB();
             var tempSelectedGenres = (formColl["GenreList"] as string).Split(',').ToList();
-            //var tempSelectedDirectors = (formColl["DirectorList"] as string).Split(',').ToList();
-            //var tempSelectedActors = (formColl["ActorList"] as string).Split(',').ToList();
 
             foreach (var item in tempSelectedGenres)
             {
@@ -197,28 +161,9 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
                 var tempGenre = db.Genre.Where(g => g.GenreID == tempGenreID).FirstOrDefault();
                 tempGenre.News.Add(tempNews);
                 tempNews.Genre.Add(tempGenre);
-            }
-
-            //foreach (var item in tempSelectedDirectors)
-            //{
-            //    var tempDirectorID = Convert.ToInt32(item);
-            //    var tempNews = db.News.Where(m => m.NewsID == islemSonuc.Data).FirstOrDefault();
-            //    //var tempDirector = db.Director.Where(d => d.DirectorID == tempDirectorID).FirstOrDefault();
-            //    //tempDirector.News.Add(tempNews);
-            //    //tempNews.Director.Add(tempDirector);
-            //}
-
-            //foreach (var item in tempSelectedActors)
-            //{
-            //    var tempActorID = Convert.ToInt32(item);
-            //    var tempNews = db.News.Where(m => m.NewsID == islemSonuc.Data).FirstOrDefault();
-            //    //var tempActor = db.Actor.Where(a => a.ActorID == tempActorID).FirstOrDefault();
-            //    //tempActor.News.Add(tempNews);
-            //    //tempNews.Actor.Add(tempActor);
-            //}
+            }                       
 
             db.SaveChanges();
-
 
             return RedirectToAction("Index", "News");
         }
@@ -230,8 +175,6 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
 
             var newsWrapper = _repository.Getir(newsID);
             var genreList = new KategoriTipRepository().GetirTumu();
-            //var directorList = new DirectorRepository().GetAllDirector();
-            //var actorList = new ActorRepository().GetAllActor();
 
             #region [HATA KONTROL]
             if (!newsWrapper.IsSuccessful)
@@ -242,28 +185,12 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", genreList.Message);
             }
-            //if (!directorList.IsSuccessful)
-            //{
-            //    ModelState.AddModelError("", directorList.Message);
-            //}
-            //if (!actorList.IsSuccessful)
-            //{
-            //    ModelState.AddModelError("", actorList.Message);
-            //}
-            //if (!(newsWrapper.IsSuccessful && genreList.IsSuccessful && directorList.IsSuccessful && actorList.IsSuccessful))
-            //{
-            //    return Create();
-            //}
             #endregion
 
 
             MultiSelectList genreSelectList = new MultiSelectList(genreList.Data, "GenreID", "GenreName");
-            //MultiSelectList directorSelectList = new MultiSelectList(directorList.Data, "DirectorID", "DirectorName");
-            //MultiSelectList actorSelectList = new MultiSelectList(actorList.Data, "ActorID", "ActorName");
 
             ViewData["GenreList"] = genreSelectList;
-            //ViewData["DirectorList"] = directorSelectList;
-            //ViewData["ActorList"] = actorSelectList;
 
             return View(newsWrapper.Data);
         }
@@ -291,8 +218,6 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
 
 
             var tempSelectedGenres = (formColl["GenreList"] as string).Split(',').ToList();
-            //var tempSelectedDirectors = (formColl["DirectorList"] as string).Split(',').ToList();
-            //var tempSelectedActors = (formColl["ActorList"] as string).Split(',').ToList();
 
 
             var delNews = db.News.Where(m => m.NewsID == news.NewsID).FirstOrDefault();
@@ -309,43 +234,7 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
                 var tempGenre = db.Genre.Where(g => g.GenreID == tempGenreID).FirstOrDefault();
                 tempGenre.News.Add(tempNews);
                 tempNews.Genre.Add(tempGenre);
-            }
-
-
-
-            //var delDirec = db.News.Where(m => m.NewsID == news.NewsID).FirstOrDefault();
-            //foreach (var item in db.Director.ToList())
-            //{
-            //    item.News.Remove(delDirec);
-            //}
-            //delDirec.Genre.Clear();
-
-            //foreach (var item in tempSelectedDirectors)
-            //{
-            //    var tempDirectorID = Convert.ToInt32(item);
-            //    var tempNews = db.News.Where(m => m.NewsID == news.NewsID).FirstOrDefault();
-            //    var tempDirector = db.Director.Where(d => d.DirectorID == tempDirectorID).FirstOrDefault();
-            //    tempDirector.News.Add(tempNews);
-            //    tempNews.Director.Add(tempDirector);
-            //}
-
-
-
-            //var delActor = db.News.Where(m => m.NewsID == news.NewsID).FirstOrDefault();
-            //foreach (var item in db.Actor.ToList())
-            //{
-            //    item.News.Remove(delActor);
-            //}
-            //delActor.Genre.Clear();
-
-            //foreach (var item in tempSelectedActors)
-            //{
-            //    var tempActorID = Convert.ToInt32(item);
-            //    var tempNews = db.News.Where(m => m.NewsID == news.NewsID).FirstOrDefault();
-            //    var tempActor = db.Actor.Where(a => a.ActorID == tempActorID).FirstOrDefault();
-            //    tempActor.News.Add(tempNews);
-            //    tempNews.Actor.Add(tempActor);
-            //}
+            }            
 
             db.SaveChanges();
 
@@ -363,18 +252,8 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
                 foreach (var item in db.Genre.ToList())
                 {
                     item.News.Remove(tempNews);
-                }
-                //foreach (var item in db.Director.ToList())
-                //{
-                //    item.News.Remove(tempNews);
-                //}
-                //foreach (var item in db.Actor.ToList())
-                //{
-                //    item.News.Remove(tempNews);
-                //}
+                }                
                 tempNews.Genre.Clear();
-                //tempNews.Director.Clear();
-                //tempNews.Actor.Clear();
                 db.News.Remove(tempNews);
                 db.SaveChanges();
             }
@@ -382,7 +261,6 @@ namespace NewsTrackingSite.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "News");
         }
-
 
         protected override void Dispose(bool disposing)
         {

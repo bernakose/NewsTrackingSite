@@ -139,7 +139,7 @@
     <value>View Details</value>
   </data>
   <data name="DogumTarih" xml:space="preserve">
-    <value>Birth Day</value>
+    <value>Birthday</value>
   </data>
   <data name="Düzenle" xml:space="preserve">
     <value>Edit</value>
@@ -157,13 +157,13 @@
     <value>SEND</value>
   </data>
   <data name="GİRİŞ" xml:space="preserve">
-    <value>LOG İN</value>
+    <value>LOG IN</value>
   </data>
   <data name="Haber" xml:space="preserve">
     <value>News</value>
   </data>
   <data name="HaberDetay" xml:space="preserve">
-    <value>NEWS DETAİLS</value>
+    <value>NEWS DETAILS</value>
   </data>
   <data name="HaberEkle" xml:space="preserve">
     <value>Add News</value>
@@ -175,7 +175,7 @@
     <value>NEWS SITE</value>
   </data>
   <data name="HaberSitesiAdmin" xml:space="preserve">
-    <value>NEWS SITE ADMİN</value>
+    <value>NEWS SITE ADMIN</value>
   </data>
   <data name="HaberTürleriİşlemleri" xml:space="preserve">
     <value>News Type Operations</value>

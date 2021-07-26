@@ -32,7 +32,7 @@ namespace NewsTrackingSite.Models
         [Required(ErrorMessage = "Kullanıcı soyadını giriniz !")]
         [MinLength(3, ErrorMessage = "Lütfen SoyAdınızı Giriniz !")]
         [MaxLength(10, ErrorMessage = "Lütfen SoyAdınızı Giriniz !")]
-        [Display(Name = "Soy Adınız")]
+        [Display(Name = "Soyadınız")]
         public string LName { get; set; }
 
         [Required]

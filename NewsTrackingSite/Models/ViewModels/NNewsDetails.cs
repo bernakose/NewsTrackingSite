@@ -20,14 +20,7 @@ namespace NewsTrackingSite.Models.ViewModels
 
     //    public string TrailerLink { get; set; }
 
-    //    public double Raiting { get; set; }
-
-    //    public string Budget { get; set; }
-
-
-    //    public List<Director> Directors { get; set; }
-
-    //    public List<Actor> Actors { get; set; }
+    
 
     //    public List<Genre> Genres { get; set; }
 
@@ -38,11 +31,6 @@ namespace NewsTrackingSite.Models.ViewModels
     {
         public News News { get; set; }
 
-        //[Display(Name = "Yönetmen")]
-        //public List<Director> Directors { get; set; }
-
-        //[Display(Name = "Aktörler")]
-        //public List<Actor> Actors { get; set; }
 
         [Display(Name = "Tür")]
         public List<Genre> Genres { get; set; }
